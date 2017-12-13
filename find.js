@@ -4,8 +4,8 @@ var boxWidth = box.offsetWidth;
 
 //hardcode target as center
 //randomize later
-var targetX = Math.floor(Math.random() * boxWidth);
-var targetY = Math.floor(Math.random() * boxHeight);
+var targetX = Math.floor(Math.random() * boxWidth); // Random X coordinate
+var targetY = Math.floor(Math.random() * boxHeight); // Random Y coordinate
 
 
 console.log( "box height: " + boxHeight );
@@ -23,34 +23,32 @@ var mx; // Mouse X
 var my; // Mouse Y
 
 var findIt = function(e) {
-    e = e || window.event;
-	
-	var mx = e.pageX;
-	var my = e.pageY;
+	var mx = e.pageX; // Mouse X
+	var my = e.pageY; // Mouse Y
 
-    var dist = distance(targetX, targetY, mx, my);
-    var percent = perDiag(dist);
-    var rgbastring = rgba(percent);
-    changeColor(rgbastring);
+    var dist = distance(targetX, targetY, mx, my); // Distance between the mouse and target
+    var percent = perDiag(dist); // Percent of half of the diagonal away from the target
+    var rgbastring = rgba(percent); // Returns "rgba(0, 0, 0, percent)"
+    changeColor(rgbastring); // Changes the background color of the box
 };
 
 // Function to get percentage of distance from target over diagonal radius of box
 var perDiag = function(distance) {
     var percent;
-    var diagRadius = Math.sqrt(boxHeight * boxHeight + boxWidth * boxWidth) / 2;
-    percent = distance / diagRadius;
-    return percent.toFixed(2);
+    var diagRadius = Math.sqrt(boxHeight * boxHeight + boxWidth * boxWidth) / 2; // Half of the diagonal distance
+    percent = distance / diagRadius; // distance / half of the diagonal
+    return percent.toFixed(2); // Returns percent rounded to 2 decimal places
 };
 
 // Function for "rgba(0, 0, 0, x)"
 var rgba = function(percent) {
-    var rgba = "rgba(0, 0, 0, " + percent + ")";
+    var rgba = "rgba(0, 0, 0, " + percent + ")"; // rgba String formatted for css
     return rgba;
 };
 
 // Function to change color of box
 var changeColor = function(rgba) {
-    box.setAttribute("style", 'background: ' + rgba);
+    box.setAttribute("style", 'background: ' + rgba); // Changes the background color
 };
 
 box.addEventListener("mousemove", findIt);
