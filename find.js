@@ -52,7 +52,7 @@ var rgba = function(percent) {
 
 // Function to change color of box
 var changeColor = function(rgba) {
-    box.setAttribute("style", 'cursor: pointer; background: ' + rgba); // Changes the background color
+    box.setAttribute("style", 'cursor: default; background: ' + rgba); // Changes the background color
 };
 
 var foundTarget = function() {
