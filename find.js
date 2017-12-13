@@ -56,7 +56,7 @@ var changeColor = function(rgba) {
 };
 
 var foundTarget = function() {
-    box.setAttribute("style", "cursor: not-allowed; background: lightsteelblue");
+    box.setAttribute("style", 'cursor: url(cow.png), auto; background: lightsteelblue');
 }
 
 box.addEventListener("mousemove", findIt);
