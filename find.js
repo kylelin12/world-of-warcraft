@@ -28,8 +28,12 @@ var findIt = function(e) {
 
     var dist = distance(targetX, targetY, mx, my); // Distance between the mouse and target
     var percent = perDiag(dist); // Percent of half of the diagonal away from the target
-    var rgbastring = rgba(percent); // Returns "rgba(0, 0, 0, percent)"
-    changeColor(rgbastring); // Changes the background color of the box
+    if (percent > 0.05) {
+        var rgbastring = rgba(percent); // Returns "rgba(0, 0, 0, percent)"
+        changeColor(rgbastring); // Changes the background color of the box
+    } else {
+        foundTarget();
+    }
 };
 
 // Function to get percentage of distance from target over diagonal radius of box
@@ -48,8 +52,12 @@ var rgba = function(percent) {
 
 // Function to change color of box
 var changeColor = function(rgba) {
-    box.setAttribute("style", 'background: ' + rgba); // Changes the background color
+    box.setAttribute("style", 'cursor: pointer; background: ' + rgba); // Changes the background color
 };
+
+var foundTarget = function() {
+    box.setAttribute("style", "cursor: not-allowed; background: lightsteelblue");
+}
 
 box.addEventListener("mousemove", findIt);
 
